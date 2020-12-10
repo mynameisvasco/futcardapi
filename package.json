@@ -1,0 +1,24 @@
+{
+  "name": "futcardapi",
+  "version": "1.0.0",
+  "description": "Generate a FUT 21 card image easily with a http call.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mynameisvasco/futcardapi.git"
+  },
+  "author": "Vasco Sousa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mynameisvasco/futcardapi/issues"
+  },
+  "homepage": "https://github.com/mynameisvasco/futcardapi#readme",
+  "dependencies": {
+    "@vercel/node": "^1.8.5",
+    "axios": "^0.21.0",
+    "canvas": "^2.6.1"
+  }
+}
