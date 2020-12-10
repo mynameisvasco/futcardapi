@@ -12,6 +12,7 @@ import {
   NATION_BADGE_URL,
   DYNAMIC_FACE_URL,
 } from "./consts";
+import path from "path";
 
 export class Card {
   private _data: any;
@@ -22,15 +23,15 @@ export class Card {
     this._data = data;
     this._canvas = createCanvas(644, 900);
     this._context = this._canvas.getContext("2d");
-    registerFont("fonts/RobotoCondensed-Bold.ttf", {
+    registerFont(path.resolve("../fonts/RobotoCondensed-Bold.ttf"), {
       family: "Roboto Condensed",
       weight: "bold",
     });
-    registerFont("fonts/RobotoCondensed-Light.ttf", {
+    registerFont(path.resolve("../fonts/RobotoCondensed-Light.ttf"), {
       family: "Roboto Condensed",
       weight: "light",
     });
-    registerFont("fonts/RobotoCondensed-Regular.ttf", {
+    registerFont(path.resolve("../fonts/RobotoCondensed-Regular.ttf"), {
       family: "Roboto Condensed",
       weight: "regular",
     });
