@@ -6,7 +6,7 @@ import {
   registerFont,
 } from "canvas";
 import {
-  BACKGROUNDS_URL,
+  CARDS_STYLES,
   FACE_URL,
   CLUB_BADGE_URL,
   NATION_BADGE_URL,
@@ -37,21 +37,17 @@ export class Card {
   }
 
   private getQuality() {
-    if (this._data.rare_type !== 1 && this._data.rare_type !== 3) {
-      return 0;
-    }
-    if (this._data.rating >= 75) {
-      return 3;
-    } else if (this._data.rating >= 65) {
-      return 2;
-    }
+    const { rating, rare_type } = this._data;
+    if (rare_type !== 1 && rare_type !== 3 && rare_type !== 0) return 0;
+    if (rating >= 75) return 3;
+    else if (rating >= 65) return 2;
     return 1;
   }
 
   private async drawBackground() {
-    const url = `${BACKGROUNDS_URL[this._data.rare_type]}/cards_bg_e_1_${
-      this._data.rare_type
-    }_${this.getQuality()}.png`;
+    const url = `${
+      CARDS_STYLES[this._data.rare_type].background
+    }/cards_bg_e_1_${this._data.rare_type}_${this.getQuality()}.png`;
     const bgImage = await loadImage(url);
     this._context.drawImage(bgImage, 0, 0);
   }
@@ -71,7 +67,7 @@ export class Card {
 
   private drawPosition() {
     this._context.font = 'regular 42px "Roboto Condensed"';
-    this._context.fillText(this._data.position, 164, 250);
+    this._context.fillText(this._data.position, 160, 250);
   }
 
   private async drawDynamicFace() {
@@ -126,11 +122,17 @@ export class Card {
     );
   }
 
+  private setTextColor() {
+    this._context.fillStyle =
+      CARDS_STYLES[this._data.rare_type].textColor[this.getQuality()];
+  }
+
   async draw() {
     await this.drawBackground();
     await this.drawFace();
     await this.drawNation();
     await this.drawClub();
+    this.setTextColor();
     this.drawName();
     this.drawPosition();
     this.drawRating();
