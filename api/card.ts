@@ -87,7 +87,7 @@ export class Card {
 
   private async drawFace() {
     const { resource, baseid } = this._data;
-    if (baseid !== resource) {
+    if (baseid !== resource && this._data.Special_Image === 1) {
       await this.drawDynamicFace();
       return;
     }
