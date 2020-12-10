@@ -53,7 +53,10 @@ export class Card {
   }
 
   private drawName() {
-    const name = (this._data.common ?? this._data.name).toUpperCase();
+    const name = (this._data.common
+      ? this._data.common
+      : this._data.name
+    ).toUpperCase();
     this._context.font = 'bold 48px "Roboto Condensed"';
     const textSize = this._context.measureText(name);
     const x = this._canvas.width / 2 - textSize.width / 2;
